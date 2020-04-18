@@ -169,7 +169,7 @@ public class SudokuSolver
 	 * @param sudokuPuzzle The sudoku puzzle to be solved
 	 * @param x The puzzle's x coordinate that we are checking.
 	 * @param y The puzzle's y coordinate that we are checking.
-	 * @return True if we have successfully reached the end of the solved puzzle. False if we have tried every number for the current square, and need to move back one square to try another number. Also returns 
+	 * @return True if we have successfully reached the end of the solved puzzle. False if we have tried every number for the current square, and need to move back one square to try another number. Also returns false if the puzzle cannot be solved for some reason.3
 	 */
 	private static boolean solvePuzzleR(SudokuSquare[][] sudokuPuzzle, int x, int y)
 	{

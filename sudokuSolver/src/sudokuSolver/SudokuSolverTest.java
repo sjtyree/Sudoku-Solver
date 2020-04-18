@@ -22,7 +22,7 @@ class SudokuSolverTest
 	}
 
 	@Test
-	void testCheckColumn()
+	void testCheckColumn() 
 	{
 		SudokuSquare[][]sudokuTest = new SudokuSquare[9][1];
 		for (int x = 0; x < 9; x++)
