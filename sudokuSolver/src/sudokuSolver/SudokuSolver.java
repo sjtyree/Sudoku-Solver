@@ -164,7 +164,13 @@ public class SudokuSolver
 				sudoku_char == '7' || sudoku_char == '8' || sudoku_char == '9');
 	}
 
-
+	/**
+	 * The main recursive function that is used to solve the Sudoku puzzle
+	 * @param sudokuPuzzle The sudoku puzzle to be solved
+	 * @param x The puzzle's x coordinate that we are checking.
+	 * @param y The puzzle's y coordinate that we are checking.
+	 * @return True if we have successfully reached the end of the solved puzzle. False if we have tried every number for the current square, and need to move back one square to try another number. Also returns 
+	 */
 	private static boolean solvePuzzleR(SudokuSquare[][] sudokuPuzzle, int x, int y)
 	{
 		//base case, reached the end of the puzzle
@@ -215,7 +221,7 @@ public class SudokuSolver
 	 * @param prospect The number that we are checking
 	 * @returns true if the number does not exist in the current row. False otherwise
 	 */
-	private static boolean checkRow(SudokuSquare[][] sudokuPuzzle, int x, int y, char prospect)
+	public static boolean checkRow(SudokuSquare[][] sudokuPuzzle, int x, int y, char prospect)
 	{
 		for (int num = 0; num < 9; num++)
 		{
@@ -234,7 +240,7 @@ public class SudokuSolver
 	 * @param prospect The number that we are checking
 	 * @returns true if the number does not exist in the current column. False otherwise
 	 */
-	private static boolean checkColumn(SudokuSquare[][] sudokuPuzzle, int x, int y, char prospect)
+	public static boolean checkColumn(SudokuSquare[][] sudokuPuzzle, int x, int y, char prospect)
 	{
 		for (int num = 0; num < 9; num++)
 		{
@@ -253,7 +259,7 @@ public class SudokuSolver
 	 * @param prospect The number that we are checking
 	 * @returns true if the number does not exist in the current 9x9 square. False otherwise
 	 */
-	private static boolean checkSquare(SudokuSquare[][] sudokuPuzzle, int x, int y, char prospect)
+	public static boolean checkSquare(SudokuSquare[][] sudokuPuzzle, int x, int y, char prospect)
 	{
 		if (x % 3 == 0 && y % 3 == 0) //we're at the top left of the square
 		{

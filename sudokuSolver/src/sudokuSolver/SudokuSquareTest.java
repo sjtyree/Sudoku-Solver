@@ -20,19 +20,19 @@ class SudokuSquareTest
 	@Test
 	void testSudokuSquareInt()
 	{
-		int testValue = 1;
+		char testValue = '1';
 		SudokuSquare testSquare = new SudokuSquare(testValue);
-		assertEquals(testSquare.getValue(), 1);
+		assertEquals(testSquare.getValue(), '1');
 		assertEquals(testSquare.getFixed(), false);
 	}
 
 	@Test
 	void testSudokuSquareIntBoolean()
 	{
-		int testValue = 1;
+		char testValue = '1';
 		boolean testFixed = true;
 		SudokuSquare testSquare = new SudokuSquare(testValue, testFixed);
-		assertEquals(testSquare.getValue(), 1);
+		assertEquals(testSquare.getValue(), '1');
 		assertEquals(testSquare.getFixed(), true);
 	}
 
@@ -46,10 +46,11 @@ class SudokuSquareTest
 	void testSetValue()
 	{
 		
-		int initialValue = 0, setValue = 1; 
+		char initialValue = '0', setValue = '1'; 
 		SudokuSquare testSquare = new SudokuSquare(initialValue);
+		assertEquals(testSquare.getValue(), '0');
 		testSquare.setValue(setValue);
-		assertEquals(testSquare.getValue(), 1);
+		assertEquals(testSquare.getValue(), '1');
 		
 	}
 
