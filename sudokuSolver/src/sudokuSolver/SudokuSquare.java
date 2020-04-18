@@ -5,6 +5,8 @@ package sudokuSolver;
 
 import java.util.ArrayList;
 
+
+
 /**
  * @author styree
  *
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 public class SudokuSquare 
 {
 
-	private int value; //actual value of the square
+	private char value; //actual value of the square
 	private boolean fixedNum; //number is fixed and cannot be changed ie was one of the numbers present in the original puzzle
 	private ArrayList<Integer> possibleValues; //list of possible values that this square could contain
 	
@@ -26,26 +28,26 @@ public class SudokuSquare
 		this.possibleValues = new ArrayList<Integer>(9);
 	}
 	
-	public SudokuSquare(int value) 
+	public SudokuSquare(char value) 
 	{
 		this.value = value;
 		this.fixedNum = false;
 		this.possibleValues = new ArrayList<Integer>(9);
 	}
 	
-	public SudokuSquare(int value, boolean fixedNum) 
+	public SudokuSquare(char value, boolean fixedNum) 
 	{
 		this.value = value;
 		this.fixedNum = fixedNum;
 		this.possibleValues = new ArrayList<Integer>(9);
 	}
 	
-	public int getValue()
+	public char getValue()
 	{
 		return this.value;
 	}
 	
-	public void setValue(int value)
+	public void setValue(char value)
 	{
 		this.value = value;
 	}
@@ -81,6 +83,12 @@ public class SudokuSquare
 		{
 			this.possibleValues.add(value); 
 		}
+	}
+	
+	@Override
+	public String toString()
+	{
+		return value + "";//convert char to string
 	}
 
 }
