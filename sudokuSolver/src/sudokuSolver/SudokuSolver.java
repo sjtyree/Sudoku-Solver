@@ -67,9 +67,9 @@ public class SudokuSolver
 	}
 	
 	/**
-	 * 
-	 * @param sudokuPuzzle
-	 * @param choice
+	 * Populates the puzzle either by getting the numbers from the user, or by reading from a file in the SudokuInput subfolder.
+	 * @param sudokuPuzzle The Sudoku Puzzle we're going to fill 
+	 * @param choice The user's choice, which determines how we fill the puzzle
 	 */
 	private static void populatePuzzle(SudokuSquare[][] sudokuPuzzle, int choice) 
 	{
@@ -89,7 +89,11 @@ public class SudokuSolver
 		
 	}
 
-
+	/*
+	 * Get Sudoku numbers from the user, one line at a time.
+	 * @param sudokuPuzzle The puzzle that we are filling in
+	 *
+	 */
 	private static void getNumbersFromUser(SudokuSquare[][] sudokuPuzzle)
 	{
 //		Scanner keyBoard = new Scanner(System.in);
@@ -116,37 +120,54 @@ public class SudokuSolver
 //		keyBoard.close();
 	}
 	
+	/*
+	 * Get Sudoku numbers from a file in the SudokuInput subfolder.
+	 * @param sudokuPuzzle The puzzle that we are filling in
+	 *
+	 */
 	private static void getNumbersFromFile(SudokuSquare[][] sudokuPuzzle)
 	{
-		System.out.println("Reading from file at location: SudokuInput\\SudokuInput.txt");
-		Scanner sudokuFile;
-		String line; 
+		Scanner sudokuFile = null;
+		String line, filePath; 
 		char sudoku_char;
-		try
+		do
 		{
-			sudokuFile = new Scanner(new File("SudokuInput\\SudokuInput.txt"));
-			for(int x = 0; x < 9; x++)
+			try
 			{
-				line = sudokuFile.nextLine(); //grab the puzzle line by line
-				for (int y = 0; y < 9; y++)
+				System.out.println("Please specify the filename, relative path, or full path of the file you wish to use as input:");
+				filePath = keyBoard.nextLine();
+				sudokuFile = new Scanner(new File(filePath));
+				for(int x = 0; x < 9; x++)
 				{
-					sudoku_char = line.charAt(y); //get the next character in the line
-					if (sudoku_char == '0')
-						sudokuPuzzle[x][y] = new SudokuSquare(sudoku_char, false); //create new sudoku square, set fixed value to false
-					else if (validNumber(sudoku_char))
-						sudokuPuzzle[x][y] = new SudokuSquare(sudoku_char, true); //create new sudoku square, set fixed value to true 
-					else
-						System.out.println(sudoku_char + " is not a valid number.");
+					line = sudokuFile.nextLine(); //grab the puzzle line by line
+					for (int y = 0; y < 9; y++)
+					{
+						sudoku_char = line.charAt(y); //get the next character in the line
+						if (sudoku_char == '0')
+							sudokuPuzzle[x][y] = new SudokuSquare(sudoku_char, false); //create new sudoku square, set fixed value to false
+						else if (validNumber(sudoku_char))
+							sudokuPuzzle[x][y] = new SudokuSquare(sudoku_char, true); //create new sudoku square, set fixed value to true 
+						else
+						{
+							System.out.println(sudoku_char + " is not a valid number.");
+							throw new Exception();
+						}
+					}
+	//				sudokuFile.nextLine();
+					
 				}
-//				sudokuFile.nextLine();
-				
+				sudokuFile.close();
 			}
-			sudokuFile.close();
-		}
-		catch (FileNotFoundException e)
-		{
-			System.out.println("File not found at SudokuInput\\\\SudokuInput.txt");
-		}
+			catch (FileNotFoundException e)
+			{
+				System.out.println("File not found, please try again.");
+			}
+			catch (Exception invalidCharacter)
+			{
+				System.out.println("Invalid character detected. Please only enter the numbers 0-9.");
+				sudokuFile = null;
+			}
+		}while(sudokuFile == null);
 		
 		
 		
